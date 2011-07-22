@@ -1,6 +1,7 @@
 #!/bin/bash
 rm -r /opt/osdb
 cd /opt
+sudo easy_install virtualenv
 if test -d /opt/.bzr
 	then
 		echo ".bzr already exist"
@@ -16,7 +17,10 @@ sudo sh run_tests.sh
 cd openstack-dashboard
 echo "=====Copy local_settings.py template====="
 cp /opt/local_settings.py  /opt/osdb/openstack-dashboard/local/
-cd /opt/osdb/openstack-dashboard/
+#cd /opt/osdb/openstack-dashboard/
+sleep 3
 echo "=====Setup Environment and Sync Databasei====="
+sleep 2
 sudo tools/with_venv.sh dashboard/manage.py syncdb
+sleep 2
 echo "=====Please excute #sudo tools/with_venv.sh dashboard/manage.py runserver 0.0.0.0:8000====="
